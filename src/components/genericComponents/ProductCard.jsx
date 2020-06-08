@@ -12,9 +12,9 @@ The productCard is connected to the store to dispatch the action to add a produc
 
 import React from "react";
 import { connect } from "react-redux";
-import {addProduct} from "../../redux/actions/cartActions";
+import {addProduct, deleteProduct} from "../../redux/actions/cartActions";
 
-const ProductCard = ({product, addProduct, qty}) => {
+const ProductCard = ({product, addProduct, deleteProduct, qty}) => {
 	return(
 		<div style = {{margin: 4, maxWidth: 350}}>
 			<div>
@@ -26,9 +26,30 @@ const ProductCard = ({product, addProduct, qty}) => {
 						width: "100%"
 					}}/>
 			</div>
-			<p>{product.title}</p>
-			<p>Current qty: {qty}</p>
-			<button onClick={() => addProduct(product.id)}> Add product to Cart </button>
+			<p style = {{textAlign: "justify"}}>{product.title}</p>
+			<div
+				style = {{
+					display: "flex",
+					alignItems: "center",
+					justifyContent: "space-around",
+					flexWrap: "wrap"
+				}}
+			>
+				<p> Current qty: {qty}</p>
+				{/*Add a button when the product is in the cart to remove one*/}
+				{qty ?
+					<button
+						onClick = {() => deleteProduct(product.id)}
+					>-</button>
+					: ""}
+				<button
+					onClick={() => addProduct(product.id)}
+					style = {{height: "50%"}}
+				>
+					{/*Changes the text depending on the product being in the cart or not*/}
+					{qty ? "+" : "Add product to Cart"}
+				</button>
+			</div>
 		</div>
 	)
 };
@@ -45,7 +66,8 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = (dispatch) => {
 	return{
-		addProduct: id => dispatch(addProduct(id)) //To complete with the right action
+		addProduct: id => dispatch(addProduct(id)), //To complete with the right action
+		deleteProduct: id => dispatch(deleteProduct(id))
 	}
 };
 
