@@ -4,16 +4,23 @@ This project was made by Thomas Quandalle as a technical test in the interview p
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+## Installation process
 
-Installation process to come in a next commit <br/>
-In the project directory, you can run:
+###Install Node.js
 
-### `npm start`
+If you don't already have Node.js v12 on your computer, go to [the Node.js website](https://nodejs.org/en/download/) to
+download and install node and npm on your computer
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+###Download or clone this repository
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+Download or clone this repository on your local filesystem
+
+###Install all necessary dependencies
+
+To install all the dependencies, go to the downloaded folder and run ```npm install``` in the root folder. It will 
+automatically download the necessary packages.
+
+###Launch the project
+Once the installation is done, you can start in development mode with ```npm start``` which will launch in localhost or 
+you can build the project using ```npm build```
 
