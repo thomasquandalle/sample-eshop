@@ -1,8 +1,16 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
-import {updateData} from "./redux/actions/dataActions";
+import {updateData} from "../redux/actions/dataActions";
 import { connect } from "react-redux";
+import ProductCard from "./genericComponents/ProductCard";
+
+const sampleProduct =   {
+	"albumId": 1,
+	"id": 1,
+	"title": "accusamus beatae ad facilis cum similique qui sunt",
+	"url": "https://via.placeholder.com/600/92c952",
+	"thumbnailUrl": "https://via.placeholder.com/150/92c952"
+};
 
 class App extends React.Component {
 
@@ -10,26 +18,13 @@ class App extends React.Component {
 		const addData = this.props.addData;
 		fetch('https://jsonplaceholder.typicode.com/photos')
 			.then(response => response.json())
-			.then(json => {console.log(json); addData(json)});
+			.then(json => addData(json));
 	}
 
 	render(){
 		return (
 			<div className="App">
-				<header className="App-header">
-					<img src={logo} className="App-logo" alt="logo"/>
-					<p>
-						Edit <code>src/App.js</code> and save to reload.
-					</p>
-					<a
-						className="App-link"
-						href="https://reactjs.org"
-						target="_blank"
-						rel="noopener noreferrer"
-					>
-						Learn React
-					</a>
-				</header>
+				<ProductCard product = {sampleProduct}/>
 			</div>
 		);
 	}
