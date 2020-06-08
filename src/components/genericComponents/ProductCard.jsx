@@ -54,7 +54,7 @@ const ProductCard = ({product, addProduct, deleteProduct, qty}) => {
 						width: "100%"
 					}}/>
 			</div>
-			<p style = {styles.title}>{product.title}</p>
+			<p style = {styles.title}>{product.title[0].toUpperCase() + product.title.slice(1)}</p>
 			<div style = {styles.quantity}	>
 				<p> Currently in cart: {qty}</p>
 				{/*Add a button when the product is in the cart to remove one*/}
