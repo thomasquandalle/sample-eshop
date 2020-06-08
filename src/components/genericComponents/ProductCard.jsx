@@ -42,40 +42,6 @@ const styles = {
 	}
 };
 
-const noProdInCartUI = (addProductCallback) =>{
-	return(
-		<div style = {styles.quantity}	>
-			<p> This item isn't in your cart</p>
-			<button
-				onClick={addProductCallback}
-				style = {styles.button}
-			>
-				Add product to Cart
-			</button>
-		</div>
-
-	)
-};
-
-const prodInCartUI = ({addProductCallback, deleteProductCallback, qty}) => {
-	return(
-		<div style = {styles.quantity}	>
-		<p> Currently in cart: </p>
-		<button
-			style = {styles.button}
-			onClick = {deleteProductCallback}
-		>-</button>
-			{qty}
-		<button
-			onClick={addProductCallback}
-			style = {styles.button}
-		>
-			{/*Changes the text depending on the product being in the cart or not*/}
-			{qty ? "+" : "Add product to Cart"}
-		</button>
-	</div>)
-};
-
 const ProductCard = ({product, addProduct, deleteProduct, qty}) => {
 	return(
 		<div style = {styles.container}>
