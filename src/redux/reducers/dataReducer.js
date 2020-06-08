@@ -5,8 +5,10 @@ const initialState = {
 };
 
 export default function(state = initialState, action){
+
 	if(action.type === UPDATE_DATA){
 		return({data: action.data})
 	}
+
 	return initialState;
 }
