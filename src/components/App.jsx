@@ -2,7 +2,7 @@ import React from 'react';
 import {updateData} from "../redux/actions/dataActions";
 import { connect } from "react-redux";
 import NavigationContainer from "./UI/Products/NavigationContainer";
-import {AppBar} from "./UI/Cart/AppBar";
+import AppBar from "./UI/Cart/AppBar";
 
 class App extends React.Component {
 	constructor(props){

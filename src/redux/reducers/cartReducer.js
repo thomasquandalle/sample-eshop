@@ -1,4 +1,4 @@
-import {ADD_PRODUCT, DELETE_PRODUCT} from "../actions/actionTypes";
+import {ADD_PRODUCT, DELETE_PRODUCT, REMOVE_ALL_PRODUCT} from "../actions/actionTypes";
 
 const initialState = {
 	products: {}
@@ -25,6 +25,11 @@ export default function(state = initialState, action){
 			return {products}
 		}
 
+	}
+	if(action.type === REMOVE_ALL_PRODUCT){
+		const products = state.products;
+		delete products[action.productId];
+		return {products}
 	}
 
 	return state;
