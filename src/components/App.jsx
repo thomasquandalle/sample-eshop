@@ -1,5 +1,4 @@
 import React from 'react';
-import './App.css';
 import {updateData} from "../redux/actions/dataActions";
 import { connect } from "react-redux";
 import NavigationContainer from "./NavigationContainer";
@@ -25,7 +24,7 @@ class App extends React.Component {
 
 	render(){
 		return (
-			<div className="App">
+			<div>
 				<NavigationContainer nbItems = {this.state.nbItems} />
 			</div>
 		);
