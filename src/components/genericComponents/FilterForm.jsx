@@ -1,5 +1,5 @@
 /*
- Component make a text form. Not completely generic because the title is set
+Component to create a text form
  */
 
 import React from "react";
@@ -22,8 +22,8 @@ export default class FilterForm extends React.Component{
 			this.props.onSubmit(this.state.value)
 		}}>
 			<label>
-				Filter by title:
-				<input type="text" value={this.state.value} onChange={this.handleChange} />        </label>
+				{this.props.title}
+				<input type="text" value={this.state.value} style = {{margin:2}} onChange={this.handleChange} />        </label>
 			<input type="submit" value="Submit" />
 		</form>)
 	}

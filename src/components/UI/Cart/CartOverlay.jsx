@@ -51,6 +51,11 @@ const styles = {
 		color: "rgb(255,255,255)",
 		boxShadow: "none",
 		borderRadius: "10px",
+	},
+	h2: {
+		color: "black",
+		width: "100%",
+		textAlign: "center"
 	}
 };
 
@@ -78,6 +83,7 @@ const CartOverlay = (props) =>(
 			</li>
 		))}
 		</ul>
+		{props.cart.length ? null : <h2 style={styles.h2}>There's nothing in your cart</h2>}
 	</Overlay>
 );
 

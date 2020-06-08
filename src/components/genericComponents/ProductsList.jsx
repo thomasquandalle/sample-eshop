@@ -19,6 +19,7 @@ export const ProductsList = ({productsList}) => {
 			{productsList.map(product => {
 				return(<ProductCard key = {product.id} product={product}/>)
 			})}
+			{productsList.length ? null : <h2>Woops, nothing matches your search</h2>}
 		</div>
 	)
 };

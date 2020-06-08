@@ -49,23 +49,18 @@ export default class NavigationContainer extends React.Component{
 				display: "flex",
 				flexDirection: "column",
 				alignItems: "center",
-				backgroundColor: "rgba(256, 256, 256, 0.87)"
+				backgroundColor: "rgba(256, 256, 256, 0.87)",
+				margin: 16
 			}}
 			>
-				<div style = {{
-					display: "flex",
-					flexDirection: "row",
-					justifyContent: "center",
-					width: "100%"
-				}}>
-					<FilterForm onSubmit={this.props.filterData} />
-					<NavigationButtons
-						currentPage = {this.state.page}
-						maxPage = {this.state.maxPage}
-						onClickNext = {() => this.nextPage()}
-						onClickPrevious={() => this.previousPage()}
-						/>
-				</div>
+
+				<NavigationButtons
+					currentPage = {this.state.page}
+					maxPage = {this.state.maxPage}
+					onClickNext = {() => this.nextPage()}
+					onClickPrevious={() => this.previousPage()}
+					/>
+				<FilterForm onSubmit={this.props.filterData} title={"Filter by title: "}/>
 				<DataContainer currentPage = {this.state.page} changeMaxPage = {(maxPage) => this.setState({maxPage: maxPage/15})}/>
 				<NavigationButtons
 					currentPage = {this.state.page}

@@ -42,9 +42,44 @@ const styles = {
 	}
 };
 
+const noProdInCartUI = (addProductCallback) =>{
+	return(
+		<div style = {styles.quantity}	>
+			<p> This item isn't in your cart</p>
+			<button
+				onClick={addProductCallback}
+				style = {styles.button}
+			>
+				Add product to Cart
+			</button>
+		</div>
+
+	)
+};
+
+const prodInCartUI = ({addProductCallback, deleteProductCallback, qty}) => {
+	return(
+		<div style = {styles.quantity}	>
+		<p> Currently in cart: </p>
+		<button
+			style = {styles.button}
+			onClick = {deleteProductCallback}
+		>-</button>
+			{qty}
+		<button
+			onClick={addProductCallback}
+			style = {styles.button}
+		>
+			{/*Changes the text depending on the product being in the cart or not*/}
+			{qty ? "+" : "Add product to Cart"}
+		</button>
+	</div>)
+};
+
 const ProductCard = ({product, addProduct, deleteProduct, qty}) => {
 	return(
 		<div style = {styles.container}>
+			<div>
 			<div>
 				<img
 					src = { product.url }
@@ -55,23 +90,34 @@ const ProductCard = ({product, addProduct, deleteProduct, qty}) => {
 					}}/>
 			</div>
 			<p style = {styles.title}>{product.title[0].toUpperCase() + product.title.slice(1)}</p>
-			<div style = {styles.quantity}	>
-				<p> Currently in cart: {qty}</p>
-				{/*Add a button when the product is in the cart to remove one*/}
-				{qty ?
+			</div>
+			{!qty ? //Changes the UI if the product is in the cart
+				(<div style = {styles.quantity}	>
+					<p> This item isn't in your cart</p>
+					<button
+						onClick={() => addProduct(product.id)}
+						style = {styles.button}
+					>
+						Add product to Cart
+					</button>
+				</div>)
+				:
+				(
+				<div style = {styles.quantity}	>
+					<p> Currently in cart: </p>
 					<button
 						style = {styles.button}
 						onClick = {() => deleteProduct(product.id)}
 					>-</button>
-					: ""}
-				<button
-					onClick={() => addProduct(product.id)}
-					style = {styles.button}
-				>
-					{/*Changes the text depending on the product being in the cart or not*/}
-					{qty ? "+" : "Add product to Cart"}
-				</button>
-			</div>
+					{qty}
+					<button
+						onClick={() => addProduct(product.id)}
+						style = {styles.button}
+					>
+						+
+					</button>
+				</div>)
+			}
 		</div>
 	)
 };
