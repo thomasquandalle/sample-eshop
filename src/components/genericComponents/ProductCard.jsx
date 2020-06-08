@@ -16,8 +16,16 @@ import {addProduct} from "../../redux/actions/cartActions";
 
 const ProductCard = ({product, addProduct, qty}) => {
 	return(
-		<div style = {{margin: 4}}>
-			<img src = { product.url } alt = {"Product " + product.id} />
+		<div style = {{margin: 4, maxWidth: 350}}>
+			<div>
+				<img
+					src = { product.url }
+					alt = {"Product " + product.id}
+					style = {{
+						height: "100%",
+						width: "100%"
+					}}/>
+			</div>
 			<p>{product.title}</p>
 			<p>Current qty: {qty}</p>
 			<button onClick={() => addProduct(product.id)}> Add product to Cart </button>
