@@ -6,9 +6,9 @@ Props:{
  */
 
 import React from "react";
-import {pagination} from "../constants";
+import {pagination} from "../../../constants";
 import DataContainer from "./DataContainer";
-import {NavigationButtons} from "./genericComponents/NavigationButtons";
+import {NavigationButtons} from "../../genericComponents/NavigationButtons";
 
 export default class NavigationContainer extends React.Component{
 
@@ -47,7 +47,9 @@ export default class NavigationContainer extends React.Component{
 			<div style = {{
 				display: "flex",
 				flexDirection: "column",
-				alignItems: "center"}}
+				alignItems: "center",
+				backgroundColor: "rgba(256, 256, 256, 0.87)"
+			}}
 			>
 				<NavigationButtons
 					currentPage = {this.state.page}

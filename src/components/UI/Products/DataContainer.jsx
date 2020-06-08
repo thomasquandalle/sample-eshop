@@ -8,8 +8,8 @@ Props:
  */
 
 import { connect } from "react-redux";
-import {ProductsList} from "./genericComponents/ProductsList";
-import {pagination} from "../constants";
+import {ProductsList} from "../../genericComponents/ProductsList";
+import {pagination} from "../../../constants";
 
 
 const mapStateToProps = (state, ownProps) => {

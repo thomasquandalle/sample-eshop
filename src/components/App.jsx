@@ -1,7 +1,8 @@
 import React from 'react';
 import {updateData} from "../redux/actions/dataActions";
 import { connect } from "react-redux";
-import NavigationContainer from "./NavigationContainer";
+import NavigationContainer from "./UI/Products/NavigationContainer";
+import {AppBar} from "./UI/Cart/AppBar";
 
 class App extends React.Component {
 	constructor(props){
@@ -24,7 +25,8 @@ class App extends React.Component {
 
 	render(){
 		return (
-			<div>
+			<div style = {{display: "flex", flexDirection: "column"}}>
+				<AppBar/>
 				<NavigationContainer nbItems = {this.state.nbItems} />
 			</div>
 		);

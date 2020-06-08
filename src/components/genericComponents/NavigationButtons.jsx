@@ -10,16 +10,27 @@ Props:{
 
 import React from "react";
 
+const styles = {
+	container: {
+		margin: 4,
+		width : "33%",
+		display: "flex",
+		justifyContent: "space-around"},
+	button:{
+		border: 0,
+		backgroundColor: "rgb(95,180,174)",
+		color: "rgb(255,255,255)",
+		boxShadow: "none",
+		borderRadius: "5px"
+	}
+};
+
 export const NavigationButtons = ({currentPage, maxPage, onClickNext, onClickPrevious}) => (
 	<div
-		style ={{
-			margin: 4,
-			width : "33%",
-			display: "flex",
-			justifyContent: "space-around"}}
+		style ={styles.container}
 	>
-		<button onClick={onClickPrevious}>Previous page</button>
+		<button style = {styles.button} onClick={onClickPrevious}>Previous page</button>
 		Page {currentPage} / {maxPage}
-		<button onClick={onClickNext}>Next Page</button>
+		<button style = {styles.button} onClick={onClickNext}>Next Page</button>
 	</div>
 );

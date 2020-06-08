@@ -14,16 +14,37 @@ import React from "react";
 import { connect } from "react-redux";
 import {addProduct, deleteProduct} from "../../redux/actions/cartActions";
 
+const styles = {
+	container: {
+		margin: 4,
+		maxWidth: 350,
+		display: "flex",
+		flexDirection: "column",
+		justifyContent: "space-between"
+	},
+	title: {
+		textAlign: "justify"
+	},
+	quantity: {
+		display: "flex",
+		alignItems: "center",
+		justifyContent: "space-around",
+		flexWrap: "wrap"
+	},
+	button:{
+		border: 0,
+		backgroundColor: "rgb(95,180,174)",
+		color: "rgb(255,255,255)",
+		height: "50%",
+		minWidth: 30,
+		boxShadow: "none",
+		borderRadius: "10px",
+	}
+};
+
 const ProductCard = ({product, addProduct, deleteProduct, qty}) => {
 	return(
-		<div
-			style = {{
-				margin: 4,
-				maxWidth: 350,
-				display: "flex",
-				flexDirection: "column",
-				justifyContent: "space-between"
-			}}>
+		<div style = {styles.container}>
 			<div>
 				<img
 					src = { product.url }
@@ -33,25 +54,19 @@ const ProductCard = ({product, addProduct, deleteProduct, qty}) => {
 						width: "100%"
 					}}/>
 			</div>
-			<p style = {{textAlign: "justify"}}>{product.title}</p>
-			<div
-				style = {{
-					display: "flex",
-					alignItems: "center",
-					justifyContent: "space-around",
-					flexWrap: "wrap"
-				}}
-			>
+			<p style = {styles.title}>{product.title}</p>
+			<div style = {styles.quantity}	>
 				<p> Currently in cart: {qty}</p>
 				{/*Add a button when the product is in the cart to remove one*/}
 				{qty ?
 					<button
+						style = {styles.button}
 						onClick = {() => deleteProduct(product.id)}
 					>-</button>
 					: ""}
 				<button
 					onClick={() => addProduct(product.id)}
-					style = {{height: "50%"}}
+					style = {styles.button}
 				>
 					{/*Changes the text depending on the product being in the cart or not*/}
 					{qty ? "+" : "Add product to Cart"}
