@@ -16,7 +16,14 @@ import {addProduct, deleteProduct} from "../../redux/actions/cartActions";
 
 const ProductCard = ({product, addProduct, deleteProduct, qty}) => {
 	return(
-		<div style = {{margin: 4, maxWidth: 350}}>
+		<div
+			style = {{
+				margin: 4,
+				maxWidth: 350,
+				display: "flex",
+				flexDirection: "column",
+				justifyContent: "space-between"
+			}}>
 			<div>
 				<img
 					src = { product.url }
@@ -35,7 +42,7 @@ const ProductCard = ({product, addProduct, deleteProduct, qty}) => {
 					flexWrap: "wrap"
 				}}
 			>
-				<p> Current qty: {qty}</p>
+				<p> Currently in cart: {qty}</p>
 				{/*Add a button when the product is in the cart to remove one*/}
 				{qty ?
 					<button
