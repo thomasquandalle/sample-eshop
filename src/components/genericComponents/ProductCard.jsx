@@ -16,7 +16,7 @@ import {addProduct} from "../../redux/actions/cartActions";
 
 const ProductCard = ({product, addProduct, qty}) => {
 	return(
-		<div>
+		<div style = {{margin: 4}}>
 			<img src = { product.url } alt = {"Product " + product.id} />
 			<p>{product.title}</p>
 			<p>Current qty: {qty}</p>

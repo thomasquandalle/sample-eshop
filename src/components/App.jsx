@@ -2,15 +2,57 @@ import React from 'react';
 import './App.css';
 import {updateData} from "../redux/actions/dataActions";
 import { connect } from "react-redux";
-import ProductCard from "./genericComponents/ProductCard";
+import {ProductsList} from "./genericComponents/ProductsList";
 
-const sampleProduct =   {
+const sampleProductLists =   [{
 	"albumId": 1,
 	"id": 1,
 	"title": "accusamus beatae ad facilis cum similique qui sunt",
 	"url": "https://via.placeholder.com/600/92c952",
 	"thumbnailUrl": "https://via.placeholder.com/150/92c952"
-};
+},
+	{
+		"albumId": 1,
+		"id": 1,
+		"title": "accusamus beatae ad facilis cum similique qui sunt",
+		"url": "https://via.placeholder.com/600/92c952",
+		"thumbnailUrl": "https://via.placeholder.com/150/92c952"
+	},
+	{
+		"albumId": 1,
+		"id": 1,
+		"title": "accusamus beatae ad facilis cum similique qui sunt",
+		"url": "https://via.placeholder.com/600/92c952",
+		"thumbnailUrl": "https://via.placeholder.com/150/92c952"
+	},
+	{
+		"albumId": 1,
+		"id": 1,
+		"title": "accusamus beatae ad facilis cum similique qui sunt",
+		"url": "https://via.placeholder.com/600/92c952",
+		"thumbnailUrl": "https://via.placeholder.com/150/92c952"
+	},
+	{
+		"albumId": 1,
+		"id": 1,
+		"title": "accusamus beatae ad facilis cum similique qui sunt",
+		"url": "https://via.placeholder.com/600/92c952",
+		"thumbnailUrl": "https://via.placeholder.com/150/92c952"
+	},
+	{
+		"albumId": 1,
+		"id": 1,
+		"title": "accusamus beatae ad facilis cum similique qui sunt",
+		"url": "https://via.placeholder.com/600/92c952",
+		"thumbnailUrl": "https://via.placeholder.com/150/92c952"
+	},
+	{
+		"albumId": 1,
+		"id": 1,
+		"title": "accusamus beatae ad facilis cum similique qui sunt",
+		"url": "https://via.placeholder.com/600/92c952",
+		"thumbnailUrl": "https://via.placeholder.com/150/92c952"
+	}];
 
 class App extends React.Component {
 
@@ -24,7 +66,7 @@ class App extends React.Component {
 	render(){
 		return (
 			<div className="App">
-				<ProductCard product = {sampleProduct}/>
+				<ProductsList productsList = {sampleProductLists}/>
 			</div>
 		);
 	}
