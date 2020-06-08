@@ -2,71 +2,31 @@ import React from 'react';
 import './App.css';
 import {updateData} from "../redux/actions/dataActions";
 import { connect } from "react-redux";
-import {ProductsList} from "./genericComponents/ProductsList";
-
-const sampleProductLists =   [{
-	"albumId": 1,
-	"id": 1,
-	"title": "accusamus beatae ad facilis cum similique qui sunt",
-	"url": "https://via.placeholder.com/600/92c952",
-	"thumbnailUrl": "https://via.placeholder.com/150/92c952"
-},
-	{
-		"albumId": 1,
-		"id": 1,
-		"title": "accusamus beatae ad facilis cum similique qui sunt",
-		"url": "https://via.placeholder.com/600/92c952",
-		"thumbnailUrl": "https://via.placeholder.com/150/92c952"
-	},
-	{
-		"albumId": 1,
-		"id": 1,
-		"title": "accusamus beatae ad facilis cum similique qui sunt",
-		"url": "https://via.placeholder.com/600/92c952",
-		"thumbnailUrl": "https://via.placeholder.com/150/92c952"
-	},
-	{
-		"albumId": 1,
-		"id": 1,
-		"title": "accusamus beatae ad facilis cum similique qui sunt",
-		"url": "https://via.placeholder.com/600/92c952",
-		"thumbnailUrl": "https://via.placeholder.com/150/92c952"
-	},
-	{
-		"albumId": 1,
-		"id": 1,
-		"title": "accusamus beatae ad facilis cum similique qui sunt",
-		"url": "https://via.placeholder.com/600/92c952",
-		"thumbnailUrl": "https://via.placeholder.com/150/92c952"
-	},
-	{
-		"albumId": 1,
-		"id": 1,
-		"title": "accusamus beatae ad facilis cum similique qui sunt",
-		"url": "https://via.placeholder.com/600/92c952",
-		"thumbnailUrl": "https://via.placeholder.com/150/92c952"
-	},
-	{
-		"albumId": 1,
-		"id": 1,
-		"title": "accusamus beatae ad facilis cum similique qui sunt",
-		"url": "https://via.placeholder.com/600/92c952",
-		"thumbnailUrl": "https://via.placeholder.com/150/92c952"
-	}];
+import NavigationContainer from "./NavigationContainer";
 
 class App extends React.Component {
+	constructor(props){
+		super(props);
+		this.state = {
+			nbItems: 0
+		}
+	}
 
 	componentDidMount() {
 		const addData = this.props.addData;
+		const setNbPage = (nbItems) => this.setState({nbItems})
 		fetch('https://jsonplaceholder.typicode.com/photos')
 			.then(response => response.json())
-			.then(json => addData(json));
+			.then(json => {
+				addData(json)
+				setNbPage(json.length)
+			});
 	}
 
 	render(){
 		return (
 			<div className="App">
-				<ProductsList productsList = {sampleProductLists}/>
+				<NavigationContainer nbItems = {this.state.nbItems} />
 			</div>
 		);
 	}
