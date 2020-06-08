@@ -1,14 +1,19 @@
-import {UPDATE_DATA} from "../actions/actionTypes";
+import {UPDATE_DATA, UPDATE_VIEW_DATA} from "../actions/actionTypes";
 
 const initialState = {
-	data: []
+	data: [],
+	viewData: []
 };
 
 export default function(state = initialState, action){
 
 	if(action.type === UPDATE_DATA){
-		return({data: action.data})
+		return({data: action.data, viewData: action.data})
 	}
+	if(action.type === UPDATE_VIEW_DATA){
+		return {data:state.data, viewData: action.data}
+	}
+
 
 	return state;
 }

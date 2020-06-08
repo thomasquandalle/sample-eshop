@@ -9,6 +9,7 @@ import React from "react";
 import {pagination} from "../../../constants";
 import DataContainer from "./DataContainer";
 import {NavigationButtons} from "../../genericComponents/NavigationButtons";
+import FilterForm from "../../genericComponents/FilterForm";
 
 export default class NavigationContainer extends React.Component{
 
@@ -51,13 +52,21 @@ export default class NavigationContainer extends React.Component{
 				backgroundColor: "rgba(256, 256, 256, 0.87)"
 			}}
 			>
-				<NavigationButtons
-					currentPage = {this.state.page}
-					maxPage = {this.state.maxPage}
-					onClickNext = {() => this.nextPage()}
-					onClickPrevious={() => this.previousPage()}
-					/>
-				<DataContainer currentPage = {this.state.page}/>
+				<div style = {{
+					display: "flex",
+					flexDirection: "row",
+					justifyContent: "center",
+					width: "100%"
+				}}>
+					<FilterForm onSubmit={this.props.filterData} />
+					<NavigationButtons
+						currentPage = {this.state.page}
+						maxPage = {this.state.maxPage}
+						onClickNext = {() => this.nextPage()}
+						onClickPrevious={() => this.previousPage()}
+						/>
+				</div>
+				<DataContainer currentPage = {this.state.page} changeMaxPage = {(maxPage) => this.setState({maxPage: maxPage/15})}/>
 				<NavigationButtons
 					currentPage = {this.state.page}
 					maxPage = {this.state.maxPage}

@@ -14,7 +14,8 @@ import {pagination} from "../../../constants";
 
 const mapStateToProps = (state, ownProps) => {
 	const index_begin = (ownProps.currentPage - 1) * pagination;
-	const slicedProducts = state.data.data.slice(index_begin, index_begin + pagination);
+	const filteredProducts = state.data.viewData; //Filtered in the store directly
+	const slicedProducts = filteredProducts.slice(index_begin, index_begin + pagination);
 	return{
 		productsList : slicedProducts
 	}
