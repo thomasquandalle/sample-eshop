@@ -1,3 +1,7 @@
+# Maiia Eshop
+
+This project was made by Thomas Quandalle as a technical test in the interview process for Maiia.
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
