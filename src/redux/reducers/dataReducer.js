@@ -10,5 +10,5 @@ export default function(state = initialState, action){
 		return({data: action.data})
 	}
 
-	return initialState;
+	return state;
 }

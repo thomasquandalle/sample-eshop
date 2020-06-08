@@ -5,6 +5,7 @@ const initialState = {
 };
 
 export default function(state = initialState, action){
+
 	if(action.type === ADD_PRODUCT){
 		const products = state.products;
 		if(!products[action.productId]){
@@ -14,5 +15,5 @@ export default function(state = initialState, action){
 		return {products}
 	}
 
-	return initialState;
+	return state;
 }
