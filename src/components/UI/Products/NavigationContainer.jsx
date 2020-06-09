@@ -1,11 +1,13 @@
 /*
 Component to hold the navigation button and send which product page we are on to the data container
 Props:{
-	nbItems: Number of items in the data collection received by the App
+	nbItems: Number of items in the data collection received by the App,
+	filterData: Callback to filter the data
 }
  */
 
 import React from "react";
+import PropTypes from "prop-types";
 import {pagination} from "../../../constants";
 import DataContainer from "./DataContainer";
 import {NavigationButtons} from "../../genericComponents/NavigationButtons";
@@ -23,23 +25,23 @@ export default class NavigationContainer extends React.Component{
 		this.nextPage = this.nextPage.bind(this);
 	}
 
-	componentDidUpdate(prevProps, prevState, snapshot) {
+	componentDidUpdate(prevProps) {
 		if(prevProps.nbItems !== this.props.nbItems){
-			this.setState({maxPage: parseInt(this.props.nbItems/pagination)+1})
+			this.setState({maxPage: parseInt(this.props.nbItems/pagination)+1});
 		}
 	}
 
 	previousPage(){
 		const currentPage = this.state.page;
 		if(currentPage > 1 ){
-			this.setState({page: currentPage - 1})
+			this.setState({page: currentPage - 1});
 		}
 	}
 
 	nextPage(){
 		const currentPage = this.state.page;
 		if(currentPage < this.state.maxPage){
-			this.setState({page: currentPage + 1})
+			this.setState({page: currentPage + 1});
 		}
 	}
 
@@ -59,7 +61,7 @@ export default class NavigationContainer extends React.Component{
 					maxPage = {this.state.maxPage}
 					onClickNext = {() => this.nextPage()}
 					onClickPrevious={() => this.previousPage()}
-					/>
+				/>
 				<FilterForm onSubmit={this.props.filterData} title={"Filter by title: "}/>
 				<DataContainer currentPage = {this.state.page} changeMaxPage = {(maxPage) => this.setState({maxPage: maxPage/15})}/>
 				<NavigationButtons
@@ -70,6 +72,11 @@ export default class NavigationContainer extends React.Component{
 				/>
 
 			</div>
-				)
+		);
 	}
 }
+
+NavigationContainer.propTypes = {
+	nbItems: PropTypes.number.isRequired, //Number of items in the data collection received by the App,
+	filterData: PropTypes.func.isRequired //Callback to filter the data
+};

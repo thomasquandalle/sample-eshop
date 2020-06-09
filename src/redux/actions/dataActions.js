@@ -8,4 +8,4 @@ export const updateData = data => ({
 export const updateViewData = data => ({
 	type: UPDATE_VIEW_DATA,
 	data
-})
+});

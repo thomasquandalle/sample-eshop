@@ -8,6 +8,7 @@ props:{
  */
 
 import React from "react";
+import PropTypes from "prop-types";
 import {Overlay} from "../../genericComponents/Overlay";
 import { connect } from "react-redux";
 import {addProduct, deleteProduct, removeAllProduct} from "../../../redux/actions/cartActions";
@@ -59,46 +60,58 @@ const styles = {
 	}
 };
 
-const CartOverlay = (props) =>(
-	<Overlay open = {props.open}>
+const CartOverlay = ({open, cart, addProduct, removeProduct, deleteProduct}) =>(
+	<Overlay open = {open}>
 		<ul style = {styles.ul}>
-		{props.cart.map(product => (
-			<li key = {product.id} style = {styles.li}>
-				<p style = {styles.titleP}>{product.title[0].toUpperCase() + product.title.slice(1)}</p>
-				<p style = {styles.qtyP}> {product.qty}</p>
-				<div style = {styles.buttonContainer}>
+			{cart.map(product => (
+				<li key = {product.id} style = {styles.li}>
+					<p style = {styles.titleP}>{product.title[0].toUpperCase() + product.title.slice(1)}</p>
+					<p style = {styles.qtyP}> {product.qty}</p>
+					<div style = {styles.buttonContainer}>
+						<button
+							onClick={() => addProduct(product.id)}
+							style = {styles.qtyButton}
+						>+</button>
+						<button
+							onClick={() => removeProduct(product.id)}
+							style = {styles.qtyButton}
+						>-</button>
+					</div>
 					<button
-						onClick={() => props.addProduct(product.id)}
-						style = {styles.qtyButton}
-					>+</button>
-					<button
-						onClick={() => props.removeProduct(product.id)}
-						style = {styles.qtyButton}
-					>-</button>
-				</div>
-				<button
-					style = {styles.button}
-					onClick={() => props.deleteProduct(product.id)}
-				>Delete</button>
-			</li>
-		))}
+						style = {styles.button}
+						onClick={() => deleteProduct(product.id)}
+					>Delete</button>
+				</li>
+			))}
 		</ul>
-		{props.cart.length ? null : <h2 style={styles.h2}>There's nothing in your cart</h2>}
+		{cart.length ? null : <h2 style={styles.h2}>There&apos;s nothing in your cart</h2>}
 	</Overlay>
 );
+
+CartOverlay.propTypes = {
+	open: PropTypes.bool.isRequired,  //The visibility of the overlay
+	cart: PropTypes.arrayOf(PropTypes.shape({ //The current cart with products information
+		title: PropTypes.string.isRequired,
+		id: PropTypes.number.isRequired,
+		qty: PropTypes.number.isRequired
+	})),
+	addProduct: PropTypes.func.isRequired, //Function to add 1 in the cart
+	removeProduct: PropTypes.func.isRequired, //Function to remove 1 from the cart
+	deleteProduct: PropTypes.func.isRequired, //Function to delete the product from the cart
+};
 
 const mapStateToProps = (state) => {
 	const cart = state.cart.products;
 	const ids = Object.keys(cart);
 	const fullProducts = state.data.data;
 	const enhancedCart = ids.map(id => {
-		let title =  fullProducts[id].title
+		let title =  fullProducts[id].title;
 		if(title.length > 40 ){
-			title = title.slice(0,37) + "..."
+			title = title.slice(0,37) + "...";
 		}
-		return({title: title, id, qty: cart[id]})
+		return({title: title, id, qty: cart[id]});
 	}); //Cart with product titles
-	return({cart:enhancedCart})
+	return({cart:enhancedCart});
 };
 
 const mapDispatchToProps = dispatch => {
@@ -106,7 +119,7 @@ const mapDispatchToProps = dispatch => {
 		deleteProduct: id => dispatch(removeAllProduct(id)),
 		addProduct: id => dispatch(addProduct(id)),
 		removeProduct: id => dispatch(deleteProduct(id))
-	}
+	};
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(CartOverlay)
+export default connect(mapStateToProps, mapDispatchToProps)(CartOverlay);

@@ -18,7 +18,7 @@ const mapStateToProps = (state, ownProps) => {
 	const slicedProducts = filteredProducts.slice(index_begin, index_begin + pagination);
 	return{
 		productsList : slicedProducts
-	}
+	};
 };
 
-export default connect(mapStateToProps)(ProductsList)
+export default connect(mapStateToProps)(ProductsList);

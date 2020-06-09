@@ -26,15 +26,15 @@ export const Overlay = (props) => {
 	if(props.open){
 		let styles = defaultStyles.overlay;
 		if(props.style){
-			styles = Object.assign({}, defaultStyles.overlay, props.style)
+			styles = Object.assign({}, defaultStyles.overlay, props.style);
 		}
 		return(
 			<div style = {styles}>
 				{props.children}
 			</div>
-		)
+		);
 	}
 	else {
-		return null
+		return null;
 	}
 };

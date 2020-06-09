@@ -9,6 +9,7 @@ Props:{
  */
 
 import React from "react";
+import PropTypes from "prop-types";
 
 const styles = {
 	container: {
@@ -25,7 +26,7 @@ const styles = {
 	}
 };
 
-export const NavigationButtons = ({currentPage, maxPage, onClickNext, onClickPrevious}) => (
+export const NavigationButtons = ({currentPage, maxPage, onClickNext = () => {}, onClickPrevious = () => {}}) => (
 	<div
 		style ={styles.container}
 	>
@@ -34,3 +35,10 @@ export const NavigationButtons = ({currentPage, maxPage, onClickNext, onClickPre
 		<button style = {styles.button} onClick={onClickNext}>Next Page</button>
 	</div>
 );
+
+NavigationButtons.propTypes = {
+	currentPage: PropTypes.number.isRequired, //Current page of products
+	maxPage: PropTypes.number.isRequired, //Max number of pages according to pagination and number of items
+	onClickNext: PropTypes.func, //Function to trigger when the button "Next Page" is clicked
+	onClickPrevious: PropTypes.func //Function to trigger when the button "Previous Page" is clicked
+};

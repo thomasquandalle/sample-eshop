@@ -11,8 +11,10 @@ The productCard is connected to the store to dispatch the action to add a produc
  */
 
 import React from "react";
+import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import {addProduct, deleteProduct} from "../../redux/actions/cartActions";
+import { productShape } from "../../constants";
 
 const styles = {
 	container: {
@@ -46,20 +48,20 @@ const ProductCard = ({product, addProduct, deleteProduct, qty}) => {
 	return(
 		<div style = {styles.container}>
 			<div>
-			<div>
-				<img
-					src = { product.url }
-					alt = {"Product " + product.id}
-					style = {{
-						height: "100%",
-						width: "100%"
-					}}/>
-			</div>
-			<p style = {styles.title}>{product.title[0].toUpperCase() + product.title.slice(1)}</p>
+				<div>
+					<img
+						src = { product.url }
+						alt = {"Product " + product.id}
+						style = {{
+							height: "100%",
+							width: "100%"
+						}}/>
+				</div>
+				<p style = {styles.title}>{product.title[0].toUpperCase() + product.title.slice(1)}</p>
 			</div>
 			{!qty ? //Changes the UI if the product is in the cart
 				(<div style = {styles.quantity}	>
-					<p> This item isn't in your cart</p>
+					<p> This item isn&apos;t in your cart</p>
 					<button
 						onClick={() => addProduct(product.id)}
 						style = {styles.button}
@@ -69,23 +71,30 @@ const ProductCard = ({product, addProduct, deleteProduct, qty}) => {
 				</div>)
 				:
 				(
-				<div style = {styles.quantity}	>
-					<p> Currently in cart: </p>
-					<button
-						style = {styles.button}
-						onClick = {() => deleteProduct(product.id)}
-					>-</button>
-					{qty}
-					<button
-						onClick={() => addProduct(product.id)}
-						style = {styles.button}
-					>
+					<div style = {styles.quantity}	>
+						<p> Currently in cart: </p>
+						<button
+							style = {styles.button}
+							onClick = {() => deleteProduct(product.id)}
+						>-</button>
+						{qty}
+						<button
+							onClick={() => addProduct(product.id)}
+							style = {styles.button}
+						>
 						+
-					</button>
-				</div>)
+						</button>
+					</div>)
 			}
 		</div>
-	)
+	);
+};
+
+ProductCard.propTypes = {
+	product: PropTypes.shape(productShape),
+	addProduct: PropTypes.func.isRequired,
+	deleteProduct: PropTypes.func.isRequired,
+	qty: PropTypes.number.isRequired,
 };
 
 const mapStateToProps = (state, ownProps) => {
@@ -93,16 +102,16 @@ const mapStateToProps = (state, ownProps) => {
 	const productId = ownProps.product.id;
 	let qty = products[productId];
 	if(qty === undefined){
-		qty = 0
+		qty = 0;
 	}
-	return {qty}
+	return {qty};
 };
 
 const mapDispatchToProps = (dispatch) => {
 	return{
-		addProduct: id => dispatch(addProduct(id)), //To complete with the right action
+		addProduct: id => dispatch(addProduct(id)),
 		deleteProduct: id => dispatch(deleteProduct(id))
-	}
+	};
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(ProductCard);

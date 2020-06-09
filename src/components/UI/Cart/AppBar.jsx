@@ -34,7 +34,7 @@ export default class AppBar extends React.Component{
 		super(props);
 		this.state = {
 			cartOpen: false
-		}
+		};
 	}
 	render(){
 		return (<div style = {appBarStyle.containingDiv}>
@@ -44,6 +44,6 @@ export default class AppBar extends React.Component{
 				onClick = {() => this.setState({cartOpen: !this.state.cartOpen})}
 			><h2 style={appBarStyle.h2}>See my Cart</h2></button>
 			<CartOverlay open = {this.state.cartOpen}/>
-		</div>)
+		</div>);
 	}
 }

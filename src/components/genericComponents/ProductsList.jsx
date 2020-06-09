@@ -4,7 +4,9 @@ The list is already filtered sliced to show only the products wanted
  */
 
 import React from "react";
+import PropTypes from "prop-types";
 import ProductCard from "./ProductCard";
+import { productShape } from "../../constants";
 
 const divStyle = {
 	display: "flex",
@@ -17,9 +19,15 @@ export const ProductsList = ({productsList}) => {
 	return(
 		<div style={divStyle}>
 			{productsList.map(product => {
-				return(<ProductCard key = {product.id} product={product}/>)
+				return(<ProductCard key = {product.id} product={product}/>);
 			})}
 			{productsList.length ? null : <h2>Woops, nothing matches your search</h2>}
 		</div>
-	)
+	);
 };
+
+ProductsList.propTypes = {
+	productsList: PropTypes.arrayOf(PropTypes.shape(productShape)).isRequired //List of products to display
+};
+
+
