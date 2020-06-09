@@ -2,7 +2,7 @@
 This component is for Navigating Buttons: current page, next page or previous page
 Props:{
 	currentPage: (Int) Current page of products
-	maxPage: (Int) Max number of pages according to pagination and number of items
+	maxPage: (Int) Max number of pages according to PAGINATION and number of items
 	onClickNext: (Function) Function to trigger when the button "Next Page" is clicked
 	onClickPrevious: (Function) Function to trigger when the button "Previous Page" is clicked
 }
@@ -38,7 +38,7 @@ export const NavigationButtons = ({currentPage, maxPage, onClickNext = () => {},
 
 NavigationButtons.propTypes = {
 	currentPage: PropTypes.number.isRequired, //Current page of products
-	maxPage: PropTypes.number.isRequired, //Max number of pages according to pagination and number of items
+	maxPage: PropTypes.number.isRequired, //Max number of pages according to PAGINATION and number of items
 	onClickNext: PropTypes.func, //Function to trigger when the button "Next Page" is clicked
 	onClickPrevious: PropTypes.func //Function to trigger when the button "Previous Page" is clicked
 };

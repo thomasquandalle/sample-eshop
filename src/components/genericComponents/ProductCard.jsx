@@ -14,7 +14,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import {addProduct, deleteProduct} from "../../redux/actions/cartActions";
-import { productShape } from "../../constants";
+import { PRODUCT_SHAPE } from "../../constants";
 
 const styles = {
 	container: {
@@ -91,7 +91,7 @@ const ProductCard = ({product, addProduct, deleteProduct, qty}) => {
 };
 
 ProductCard.propTypes = {
-	product: PropTypes.shape(productShape),
+	product: PropTypes.shape(PRODUCT_SHAPE),
 	addProduct: PropTypes.func.isRequired,
 	deleteProduct: PropTypes.func.isRequired,
 	qty: PropTypes.number.isRequired,

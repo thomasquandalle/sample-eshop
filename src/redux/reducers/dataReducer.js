@@ -5,15 +5,17 @@ const initialState = {
 	viewData: []
 };
 
-export default function(state = initialState, action){
+export default function(state = initialState, action) {
 
-	if(action.type === UPDATE_DATA){
-		return({data: action.data, viewData: action.data});
+	if (action.type === UPDATE_DATA) {
+		return ({
+			data: action.data,
+			viewData: action.data
+		});
 	}
-	if(action.type === UPDATE_VIEW_DATA){
-		return {data:state.data, viewData: action.data};
+	if (action.type === UPDATE_VIEW_DATA) {
+		return Object.assign({}, state, {viewData: action.data});
 	}
-
 
 	return state;
 }

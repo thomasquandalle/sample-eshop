@@ -7,13 +7,15 @@ Props:{
  */
 
 import React from "react";
+import {connect} from "react-redux";
 import PropTypes from "prop-types";
-import {pagination} from "../../../constants";
+import {PAGINATION} from "../../../constants";
 import DataContainer from "./DataContainer";
 import {NavigationButtons} from "../../genericComponents/NavigationButtons";
 import FilterForm from "../../genericComponents/FilterForm";
+import { fetchAndUpdateData } from "../../../redux/actions/dataActions";
 
-export default class NavigationContainer extends React.Component{
+class NavigationContainer extends React.Component{
 
 	constructor(props){
 		super(props);
@@ -27,7 +29,7 @@ export default class NavigationContainer extends React.Component{
 
 	componentDidUpdate(prevProps) {
 		if(prevProps.nbItems !== this.props.nbItems){
-			this.setState({maxPage: parseInt(this.props.nbItems/pagination)+1});
+			this.setState({maxPage: parseInt(this.props.nbItems/PAGINATION)+1});
 		}
 	}
 
@@ -80,3 +82,15 @@ NavigationContainer.propTypes = {
 	nbItems: PropTypes.number.isRequired, //Number of items in the data collection received by the App,
 	filterData: PropTypes.func.isRequired //Callback to filter the data
 };
+
+const mapStateToProps = (state) => {
+	return { nbItems: state.data.viewData.length };
+};
+
+const mapDispatchToProps = function(dispatch){
+	return ({
+		filterData: (filter) => dispatch(fetchAndUpdateData(filter, true)),
+	});
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(NavigationContainer);

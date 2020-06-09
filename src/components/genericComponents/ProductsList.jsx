@@ -6,7 +6,7 @@ The list is already filtered sliced to show only the products wanted
 import React from "react";
 import PropTypes from "prop-types";
 import ProductCard from "./ProductCard";
-import { productShape } from "../../constants";
+import { PRODUCT_SHAPE } from "../../constants";
 
 const divStyle = {
 	display: "flex",
@@ -27,7 +27,7 @@ export const ProductsList = ({productsList}) => {
 };
 
 ProductsList.propTypes = {
-	productsList: PropTypes.arrayOf(PropTypes.shape(productShape)).isRequired //List of products to display
+	productsList: PropTypes.arrayOf(PropTypes.shape(PRODUCT_SHAPE)).isRequired //List of products to display
 };
 
 

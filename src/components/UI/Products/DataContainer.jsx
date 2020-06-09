@@ -9,13 +9,13 @@ Props:
 
 import { connect } from "react-redux";
 import {ProductsList} from "../../genericComponents/ProductsList";
-import {pagination} from "../../../constants";
+import {PAGINATION} from "../../../constants";
 
 
 const mapStateToProps = (state, ownProps) => {
-	const index_begin = (ownProps.currentPage - 1) * pagination;
+	const index_begin = (ownProps.currentPage - 1) * PAGINATION;
 	const filteredProducts = state.data.viewData; //Filtered in the store directly
-	const slicedProducts = filteredProducts.slice(index_begin, index_begin + pagination);
+	const slicedProducts = filteredProducts.slice(index_begin, index_begin + PAGINATION);
 	return{
 		productsList : slicedProducts
 	};
