@@ -44,7 +44,7 @@ const styles = {
 	}
 };
 
-const ProductCard = ({product, addProduct, deleteProduct, qty}) => {
+function ProductCard({product, addProduct, deleteProduct, qty}){
 	return(
 		<div style = {styles.container}>
 			<div>
@@ -88,7 +88,7 @@ const ProductCard = ({product, addProduct, deleteProduct, qty}) => {
 			}
 		</div>
 	);
-};
+}
 
 ProductCard.propTypes = {
 	product: PropTypes.shape(PRODUCT_SHAPE),

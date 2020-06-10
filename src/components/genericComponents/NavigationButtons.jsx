@@ -26,15 +26,15 @@ const styles = {
 	}
 };
 
-export const NavigationButtons = ({currentPage, maxPage, onClickNext = () => {}, onClickPrevious = () => {}}) => (
-	<div
+export default function NavigationButtons({currentPage, maxPage, onClickNext = () => {}, onClickPrevious = () => {}}){
+	return(<div
 		style ={styles.container}
 	>
 		<button style = {styles.button} onClick={onClickPrevious}>Previous page</button>
 		Page {currentPage} / {maxPage}
 		<button style = {styles.button} onClick={onClickNext}>Next Page</button>
-	</div>
-);
+	</div>);
+}
 
 NavigationButtons.propTypes = {
 	currentPage: PropTypes.number.isRequired, //Current page of products

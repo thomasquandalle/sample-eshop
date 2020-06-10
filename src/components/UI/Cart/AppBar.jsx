@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import CartOverlay from "./CartOverlay";
 
 
@@ -29,21 +29,16 @@ const appBarStyle = {
 	}
 };
 
-export default class AppBar extends React.Component{
-	constructor(props){
-		super(props);
-		this.state = {
-			cartOpen: false
-		};
-	}
-	render(){
-		return (<div style = {appBarStyle.containingDiv}>
-			<h2 style = {appBarStyle.h2}>Sample Eshop</h2>
-			<button
-				style = {appBarStyle.button}
-				onClick = {() => this.setState({cartOpen: !this.state.cartOpen})}
-			><h2 style={appBarStyle.h2}>See my Cart</h2></button>
-			<CartOverlay open = {this.state.cartOpen}/>
-		</div>);
-	}
+export default function AppBar(){
+
+	const [cartOpen, toggleCart] = useState(false);
+
+	return (<div style = {appBarStyle.containingDiv}>
+		<h2 style = {appBarStyle.h2}>Sample Eshop</h2>
+		<button
+			style = {appBarStyle.button}
+			onClick = {() => toggleCart(!cartOpen)}
+		><h2 style={appBarStyle.h2}>See my Cart</h2></button>
+		<CartOverlay open = {cartOpen}/>
+	</div>);
 }

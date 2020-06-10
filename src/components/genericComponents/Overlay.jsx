@@ -7,6 +7,7 @@
  */
 
 import React from "react";
+import PropTypes from "prop-types";
 
 const defaultStyles = {
 	overlay: {
@@ -22,19 +23,25 @@ const defaultStyles = {
 	}
 };
 
-export const Overlay = (props) => {
-	if(props.open){
+export default function Overlay({open, children, style = null}){
+	if(open){
 		let styles = defaultStyles.overlay;
-		if(props.style){
-			styles = Object.assign({}, defaultStyles.overlay, props.style);
+		if(style){
+			styles = Object.assign({}, defaultStyles.overlay, style);
 		}
 		return(
 			<div style = {styles}>
-				{props.children}
+				{children}
 			</div>
 		);
 	}
 	else {
 		return null;
 	}
+}
+
+Overlay.propTypes = {
+	open: PropTypes.bool.isRequired,
+	style: PropTypes.object,
+	children: PropTypes.array
 };

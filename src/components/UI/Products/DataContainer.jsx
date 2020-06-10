@@ -3,12 +3,12 @@ This DataContainer connects the productsList to the actual data stored in the st
 Props:
 {
 	currentPage: (Int) Page in the navigation to get the products used
-	data: (Array) Array of products from the store to slice and filter (if needed)
+	viewData: (Array) Array of products from the store to slice, already filtered
 }
  */
 
 import { connect } from "react-redux";
-import {ProductsList} from "../../genericComponents/ProductsList";
+import ProductsList from "../../genericComponents/ProductsList";
 import {PAGINATION} from "../../../constants";
 
 

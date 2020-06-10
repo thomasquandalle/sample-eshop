@@ -9,7 +9,7 @@ props:{
 
 import React from "react";
 import PropTypes from "prop-types";
-import {Overlay} from "../../genericComponents/Overlay";
+import Overlay from "../../genericComponents/Overlay";
 import { connect } from "react-redux";
 import {addProduct, deleteProduct, removeAllProduct} from "../../../redux/actions/cartActions";
 
@@ -60,33 +60,41 @@ const styles = {
 	}
 };
 
-const CartOverlay = ({open, cart, addProduct, removeProduct, deleteProduct}) =>(
-	<Overlay open = {open}>
-		<ul style = {styles.ul}>
-			{cart.map(product => (
-				<li key = {product.id} style = {styles.li}>
-					<p style = {styles.titleP}>{product.title[0].toUpperCase() + product.title.slice(1)}</p>
-					<p style = {styles.qtyP}> {product.qty}</p>
-					<div style = {styles.buttonContainer}>
+function CartOverlay({open, cart, addProduct, removeProduct, deleteProduct}){
+	return(
+		<Overlay open = {open}>
+			<ul style = {styles.ul}>
+				{cart.map(product => (
+					<li key = {product.id} style = {styles.li}>
+						<p style = {styles.titleP}>{product.title[0].toUpperCase() + product.title.slice(1)}</p>
+						<p style = {styles.qtyP}> {product.qty}</p>
+						<div style = {styles.buttonContainer}>
+							<button
+								onClick={() => addProduct(product.id)}
+								style = {styles.qtyButton}
+							>
+								+
+							</button>
+							<button
+								onClick={() => removeProduct(product.id)}
+								style = {styles.qtyButton}
+							>
+								-
+							</button>
+						</div>
 						<button
-							onClick={() => addProduct(product.id)}
-							style = {styles.qtyButton}
-						>+</button>
-						<button
-							onClick={() => removeProduct(product.id)}
-							style = {styles.qtyButton}
-						>-</button>
-					</div>
-					<button
-						style = {styles.button}
-						onClick={() => deleteProduct(product.id)}
-					>Delete</button>
-				</li>
-			))}
-		</ul>
-		{cart.length ? null : <h2 style={styles.h2}>There&apos;s nothing in your cart</h2>}
-	</Overlay>
-);
+							style = {styles.button}
+							onClick={() => deleteProduct(product.id)}
+						>
+							Delete
+						</button>
+					</li>
+				))}
+			</ul>
+			{cart.length ? null : <h2 style={styles.h2}>There&apos;s nothing in your cart</h2>}
+		</Overlay>
+	);
+}
 
 CartOverlay.propTypes = {
 	open: PropTypes.bool.isRequired,  //The visibility of the overlay

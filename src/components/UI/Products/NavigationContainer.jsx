@@ -6,76 +6,72 @@ Props:{
 }
  */
 
-import React from "react";
+import React, {useEffect, useState} from "react";
 import {connect} from "react-redux";
 import PropTypes from "prop-types";
 import {PAGINATION} from "../../../constants";
 import DataContainer from "./DataContainer";
-import {NavigationButtons} from "../../genericComponents/NavigationButtons";
+import NavigationButtons from "../../genericComponents/NavigationButtons";
 import FilterForm from "../../genericComponents/FilterForm";
 import { fetchAndUpdateData } from "../../../redux/actions/dataActions";
 
-class NavigationContainer extends React.Component{
+function NavigationContainer({nbItems, filterData}){
 
-	constructor(props){
-		super(props);
-		this.state = {
-			page: 1,
-			maxPage: 1
-		};
-		this.previousPage = this.previousPage.bind(this);
-		this.nextPage = this.nextPage.bind(this);
-	}
+	//Define the states using Hooks
+	const [page, setPage] = useState(1);
+	const [maxPage, setMaxPage] = useState(1);
 
-	componentDidUpdate(prevProps) {
-		if(prevProps.nbItems !== this.props.nbItems){
-			this.setState({maxPage: parseInt(this.props.nbItems/PAGINATION)+1});
-		}
-	}
 
-	previousPage(){
-		const currentPage = this.state.page;
+	useEffect(() => {
+		setMaxPage(parseInt(nbItems/PAGINATION)+1);
+	}, [nbItems]);
+
+	function previousPage(){
+		const currentPage = page;
 		if(currentPage > 1 ){
-			this.setState({page: currentPage - 1});
+			setPage(currentPage - 1);
 		}
 	}
 
-	nextPage(){
-		const currentPage = this.state.page;
-		if(currentPage < this.state.maxPage){
-			this.setState({page: currentPage + 1});
+	function nextPage(){
+		const currentPage = page;
+		if(currentPage < maxPage){
+			setPage(currentPage + 1);
 		}
 	}
 
-	render(){
-		return(
-			<div style = {{
-				display: "flex",
-				flexDirection: "column",
-				alignItems: "center",
-				backgroundColor: "rgba(256, 256, 256, 0.87)",
-				margin: 16
-			}}
-			>
+	return(
+		<div style = {{
+			display: "flex",
+			flexDirection: "column",
+			alignItems: "center",
+			backgroundColor: "rgba(256, 256, 256, 0.87)",
+			margin: 16
+		}}
+		>
 
-				<NavigationButtons
-					currentPage = {this.state.page}
-					maxPage = {this.state.maxPage}
-					onClickNext = {() => this.nextPage()}
-					onClickPrevious={() => this.previousPage()}
-				/>
-				<FilterForm onSubmit={this.props.filterData} title={"Filter by title: "}/>
-				<DataContainer currentPage = {this.state.page} changeMaxPage = {(maxPage) => this.setState({maxPage: maxPage/15})}/>
-				<NavigationButtons
-					currentPage = {this.state.page}
-					maxPage = {this.state.maxPage}
-					onClickNext = {() => this.nextPage()}
-					onClickPrevious={() => this.previousPage()}
-				/>
+			<NavigationButtons
+				currentPage = {page}
+				maxPage = {maxPage}
+				onClickNext = {() => nextPage()}
+				onClickPrevious={() => previousPage()}
+			/>
+			<FilterForm
+				onSubmit={filterData}
+				title={"Filter by title: "}
+			/>
+			<DataContainer
+				currentPage = {page}
+			/>
+			<NavigationButtons
+				currentPage = {page}
+				maxPage = {maxPage}
+				onClickNext = {() => nextPage()}
+				onClickPrevious={() => previousPage()}
+			/>
 
-			</div>
-		);
-	}
+		</div>
+	);
 }
 
 NavigationContainer.propTypes = {

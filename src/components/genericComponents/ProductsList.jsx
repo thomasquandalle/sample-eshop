@@ -15,7 +15,7 @@ const divStyle = {
 	alignContent: "left"
 };
 
-export const ProductsList = ({productsList}) => {
+export default function ProductsList({productsList}){
 	return(
 		<div style={divStyle}>
 			{productsList.map(product => {
@@ -24,7 +24,7 @@ export const ProductsList = ({productsList}) => {
 			{productsList.length ? null : <h2>Woops, nothing matches your search</h2>}
 		</div>
 	);
-};
+}
 
 ProductsList.propTypes = {
 	productsList: PropTypes.arrayOf(PropTypes.shape(PRODUCT_SHAPE)).isRequired //List of products to display
